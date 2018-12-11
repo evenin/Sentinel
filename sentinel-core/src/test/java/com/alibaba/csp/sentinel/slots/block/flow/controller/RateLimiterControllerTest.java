@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alibaba.csp.sentinel.slots.block.flow;
+package com.alibaba.csp.sentinel.slots.block.flow.controller;
 
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
@@ -25,16 +25,16 @@ import org.junit.Test;
 
 import com.alibaba.csp.sentinel.util.TimeUtil;
 import com.alibaba.csp.sentinel.node.Node;
-import com.alibaba.csp.sentinel.slots.block.flow.controller.PaceController;
+import com.alibaba.csp.sentinel.slots.block.flow.controller.RateLimiterController;
 
 /**
  * @author jialiang.linjl
  */
-public class PaceControllerTest {
+public class RateLimiterControllerTest {
 
     @Test
     public void testPaceController_normal() throws InterruptedException {
-        PaceController paceController = new PaceController(500, 10d);
+        RateLimiterController paceController = new RateLimiterController(500, 10d);
         Node node = mock(Node.class);
 
         long start = TimeUtil.currentTimeMillis();
@@ -47,7 +47,7 @@ public class PaceControllerTest {
 
     @Test
     public void testPaceController_timeout() throws InterruptedException {
-        final PaceController paceController = new PaceController(500, 10d);
+        final RateLimiterController paceController = new RateLimiterController(500, 10d);
         final Node node = mock(Node.class);
 
         final AtomicInteger passcount = new AtomicInteger();
