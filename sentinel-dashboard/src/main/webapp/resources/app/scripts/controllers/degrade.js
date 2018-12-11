@@ -82,12 +82,15 @@ app.controller('DegradeCtl', ['$scope', '$stateParams', 'DegradeService', 'ngDia
     };
 
     $scope.saveRule = function () {
-      if ($scope.degradeRuleDialog.type == 'add') {
+      if (!DegradeService.checkRuleValid($scope.currentRule)) {
+        return;
+      }
+      if ($scope.degradeRuleDialog.type === 'add') {
         addNewRule($scope.currentRule);
-      } else if ($scope.degradeRuleDialog.type == 'edit') {
+      } else if ($scope.degradeRuleDialog.type === 'edit') {
         saveRule($scope.currentRule, true);
       }
-    }
+    };
 
     var confirmDialog;
     $scope.deleteRule = function (rule) {
